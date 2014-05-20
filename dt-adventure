@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 // var file = process.argv[2];
-var level = require('./level1');
+var level = require('./level1.json');
 var readline = require('readline');
 
 var rl = readline.createInterface({
@@ -10,18 +10,31 @@ var rl = readline.createInterface({
   output: process.stdout
 });
 
-var currentRoom = level.room;
 
+var currentRoom = {};
 
-// var lookAround = {};
+// var lookAround = function(inRoom) {
+// 	var north = level.room.north;
+//   var south = level.room.south;
+//   var east = level.room.east;
+//   var west = level.room.west;
+//   var roomArray = [north, south, east, west];
+//   return roomArray;
+// };
 
-// level.rooms.forEach(function (room) {
-// 	lookAround = currentRoom;
-// });
+// Find the starting room
+level.rooms.forEach(function(obj) {
+  if (obj.entrance) {
+    currentRoom = obj;
+  }
+});
 
-console.log('You\'re currently in ' + currentRoom);
-// console.log('You find yourself in a room. It has ' + 
+console.log(currentRoom);
+console.log('You\'re currently in ' + currentRoom.name);
+// console.log('You find yourself in a room. It has ' +
 // 	lookAround(currentRoom).length + " doors");
+// console.log(lookAround(currentRoom));
+
 rl.close();
 
 // rl.question("What is your first number?", function(number1) {
