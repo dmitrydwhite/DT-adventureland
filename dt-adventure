@@ -13,6 +13,7 @@ var rl = readline.createInterface({
 
 var currentRoom = {};
 var doorsArray = [];
+var doorDirections = [];
 
 // Find the starting room
 level.rooms.forEach(function(obj) {
@@ -23,26 +24,42 @@ level.rooms.forEach(function(obj) {
 
 // Count the number of doors in the current room
 var countTheDoors = function (obj) {
-	var n = 0;
+	var d1 = ""; var d2 = "";var d3 = ""; var d4 = "";
 	if (obj.north) {
 		doorsArray.push(obj.north);
+		doorDirections.push('north');
+		d1 = ', one to the north';
 	}
 	if (obj.south) {
 		doorsArray.push(obj.south);
+		doorDirections.push('south');
+		d2 = ', one to the south';
 	}
 	if (obj.east) {
 		doorsArray.push(obj.east);
+		doorDirections.push('east');
+		d3 = ', one to the east';
 	}
 	if (obj.west) {
 		doorsArray.push(obj.west);
+		doorDirections.push('west');
+		d4 = ', one to the west';
 	}
+	console.log('You see ' + doorsArray.length + ' doors in this room' + 
+		d1 + d2 + d3 + d4 + '.');
 };
 
-console.log(currentRoom);
-console.log('You\'re currently in ' + currentRoom.name);
+var describeDirection = function (obj) {
+	countTheDoors(obj);
+
+};
+
+// console.log(currentRoom);
+// console.log('You\'re currently in ' + currentRoom.name);
 countTheDoors(currentRoom);
 console.log('You notice that there are ' + doorsArray.length + 
 	' doors in this weird little room.');
+console.log(doorsArray);
 
 
 rl.close();
