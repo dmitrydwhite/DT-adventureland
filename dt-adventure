@@ -10,17 +10,18 @@ var rl = readline.createInterface({
   output: process.stdout
 });
 
-var currentRoom = level.rooms[1];
+var currentRoom = level.room;
 
-var lookAround = function(room) {
-	var newArray = [];
-	newArray = room.slice(1,5);
-	return array;
-};
+
+// var lookAround = {};
+
+// level.rooms.forEach(function (room) {
+// 	lookAround = currentRoom;
+// });
 
 console.log('You\'re currently in ' + currentRoom);
-console.log('You find yourself in a room. It has ' + 
-	lookAround(currentRoom).length + " doors");
+// console.log('You find yourself in a room. It has ' + 
+// 	lookAround(currentRoom).length + " doors");
 rl.close();
 
 // rl.question("What is your first number?", function(number1) {
