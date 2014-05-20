@@ -12,15 +12,7 @@ var rl = readline.createInterface({
 
 
 var currentRoom = {};
-
-// var lookAround = function(inRoom) {
-// 	var north = level.room.north;
-//   var south = level.room.south;
-//   var east = level.room.east;
-//   var west = level.room.west;
-//   var roomArray = [north, south, east, west];
-//   return roomArray;
-// };
+var doorsArray = [];
 
 // Find the starting room
 level.rooms.forEach(function(obj) {
@@ -29,11 +21,29 @@ level.rooms.forEach(function(obj) {
   }
 });
 
+// Count the number of doors in the current room
+var countTheDoors = function (obj) {
+	var n = 0;
+	if (obj.north) {
+		doorsArray.push(obj.north);
+	}
+	if (obj.south) {
+		doorsArray.push(obj.south);
+	}
+	if (obj.east) {
+		doorsArray.push(obj.east);
+	}
+	if (obj.west) {
+		doorsArray.push(obj.west);
+	}
+};
+
 console.log(currentRoom);
 console.log('You\'re currently in ' + currentRoom.name);
-// console.log('You find yourself in a room. It has ' +
-// 	lookAround(currentRoom).length + " doors");
-// console.log(lookAround(currentRoom));
+countTheDoors(currentRoom);
+console.log('You notice that there are ' + doorsArray.length + 
+	' doors in this weird little room.');
+
 
 rl.close();
 
