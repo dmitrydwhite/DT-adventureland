@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 // var file = process.argv[2];
-// var obj = require('./game1');
+var level = require('./level1');
 var readline = require('readline');
 
 var rl = readline.createInterface({
@@ -10,16 +10,25 @@ var rl = readline.createInterface({
   output: process.stdout
 });
 
-var sum = function (x, y) {
-	return (parseInt(x) + parseInt(y));
+var currentRoom = level.rooms[1];
+
+var lookAround = function(room) {
+	var newArray = [];
+	newArray = room.slice(1,5);
+	return array;
 };
 
-rl.question("What is your first number?", function(number1) {
-	console.log("Your first number is", number1);
-	rl.question("What is your second number?", function(number2) {
-		console.log("Your second number is", number2);
-		// TODO: Log the answer in a database
-	  	console.log("Thank you! Your total is:", sum(number1, number2));
-  		rl.close();
-	});
-});
+console.log('You\'re currently in ' + currentRoom);
+console.log('You find yourself in a room. It has ' + 
+	lookAround(currentRoom).length + " doors");
+rl.close();
+
+// rl.question("What is your first number?", function(number1) {
+// 	console.log("Your first number is", number1);
+// 	rl.question("What is your second number?", function(number2) {
+// 		console.log("Your second number is", number2);
+// 		// TODO: Log the answer in a database
+// 	  	console.log("Thank you! Your total is:", sum(number1, number2));
+//   		rl.close();
+// 	});
+// });
