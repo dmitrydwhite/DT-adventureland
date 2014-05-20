@@ -14,6 +14,7 @@ var rl = readline.createInterface({
 var currentRoom = {};
 var doorsArray = [];
 var doorDirections = [];
+var newRoom;
 
 // Find the starting room
 level.rooms.forEach(function(obj) {
@@ -45,7 +46,8 @@ var countTheDoors = function (obj) {
 		doorDirections.push('west');
 		d4 = ', one to the west';
 	}
-	console.log('You see ' + doorsArray.length + ' doors in this room' + 
+	console.log('You are standing in a room. You notice there are ' + doorsArray.length + 
+		' doors in this weird little room' + 
 		d1 + d2 + d3 + d4 + '.');
 };
 
@@ -57,19 +59,18 @@ var describeDirection = function (obj) {
 // console.log(currentRoom);
 // console.log('You\'re currently in ' + currentRoom.name);
 countTheDoors(currentRoom);
-console.log('You notice that there are ' + doorsArray.length + 
-	' doors in this weird little room.');
-console.log(doorsArray);
+// console.log(doorsArray);
+
+rl.question("Which direction do you want to proceed? ", function(direction) {
+	console.log("You have traveled", direction);
+		console.log(currentRoom.north);
+		console.log('You are now in room ' + newRoom);
+
+	
+  		rl.close();
+	
+});
 
 
-rl.close();
 
-// rl.question("What is your first number?", function(number1) {
-// 	console.log("Your first number is", number1);
-// 	rl.question("What is your second number?", function(number2) {
-// 		console.log("Your second number is", number2);
-// 		// TODO: Log the answer in a database
-// 	  	console.log("Thank you! Your total is:", sum(number1, number2));
-//   		rl.close();
-// 	});
-// });
+
