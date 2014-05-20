@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+// var file = process.argv[2];
+// var obj = require('./game1');
+var readline = require('readline');
+
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+var sum = function (x, y) {
+	return (parseInt(x) + parseInt(y));
+};
+
+rl.question("What is your first number?", function(number1) {
+	console.log("Your first number is", number1);
+	rl.question("What is your second number?", function(number2) {
+		console.log("Your second number is", number2);
+		// TODO: Log the answer in a database
+	  	console.log("Thank you! Your total is:", sum(number1, number2));
+  		rl.close();
+	});
+});
