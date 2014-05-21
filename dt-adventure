@@ -87,6 +87,7 @@ var runGame = function (roomObj) {
 			whichRoom(newRoom);
 			console.log(roomObj);
 			console.log('Treasure room is here ' + treasureRoom.name);
+		
 	});	
 };
 
