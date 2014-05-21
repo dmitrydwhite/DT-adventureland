@@ -17,20 +17,6 @@ var doorDirections = [];
 var newRoom;
 var treasureRoom = {};
 
-// Find the starting room
-level.rooms.forEach(function(obj) {
-  if (obj.entrance) {
-    currentRoom = obj;
-  }
-});
-
-// Find the treasure room
-level.rooms.forEach(function(obj) {
-  if (obj.treasure) {
-    treasureRoom = obj;
-  }
-});
-
 // Find where they went
 var whichRoom = function (roomName) {
 	level.rooms.forEach(function(obj) {
@@ -42,6 +28,7 @@ var whichRoom = function (roomName) {
 
 // Count the number of doors in the current room
 var countTheDoors = function (obj) {
+  doorsArray = [];
 	var d1 = ""; var d2 = "";var d3 = ""; var d4 = "";
 	if (obj.north) {
 		doorsArray.push(obj.north);
@@ -63,7 +50,7 @@ var countTheDoors = function (obj) {
 		doorDirections.push('west');
 		d4 = ', one to the west';
 	}
-	console.log('You are standing in a room. You notice there are ' + doorsArray.length +
+	console.log('You are standing in ' + currentRoom.name + '. You notice there are ' + doorsArray.length +
 		' doors in this weird little room' +
 		d1 + d2 + d3 + d4 + '.');
 };
@@ -85,17 +72,31 @@ var runGame = function (roomObj) {
 			newRoom = roomObj[direction];
 			console.log('You are now in room ' + newRoom);
 			whichRoom(newRoom);
-			console.log(roomObj);
-			console.log('Treasure room is here ' + treasureRoom.name);
-		
-	});	
+     		runGame(currentRoom);
+	});
+
 };
 
-while (currentRoom != treasureRoom) {
-	runGame (currentRoom);
-}
-console.log('You have found the treasure'); 
-rl.close();
+// Find the starting room
+level.rooms.forEach(function(obj) {
+  if (obj.entrance) {
+    currentRoom = obj;
+  }
+});
+
+// Find the treasure room
+level.rooms.forEach(function(obj) {
+  if (obj.treasure) {
+    treasureRoom = obj;
+  }
+});
+
+// Run the game
+
+runGame (currentRoom);
+
+// console.log('You have found the treasure');
+// rl.close();
 
 
 
