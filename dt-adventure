@@ -66,14 +66,20 @@ var describeDirection = function (obj) {
 // console.log(doorsArray);
 
 var runGame = function (roomObj) {
-	countTheDoors(roomObj);
-	rl.question("Which direction do you want to proceed? ", function(direction) {
-		console.log("You have traveled", direction);
-			newRoom = roomObj[direction];
-			console.log('You are now in room ' + newRoom);
-			whichRoom(newRoom);
-      runGame(currentRoom);
-	});
+  if (currentRoom !== treasureRoom) {
+  	countTheDoors(roomObj);
+  	rl.question("Which direction do you want to proceed? ", function(direction) {
+  		console.log("You have traveled", direction);
+  			newRoom = roomObj[direction];
+  			console.log('You are now in room ' + newRoom);
+  			whichRoom(newRoom);
+        runGame(currentRoom);
+  	});
+  }
+  else {
+    console.log('You have found the hidden treasure and beat this level!');
+    rl.close();
+  }
 };
 
 // Find the starting room
