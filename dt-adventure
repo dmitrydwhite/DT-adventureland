@@ -4,6 +4,7 @@ var fs = require('fs');
 var readline = require('readline');
 var file = process.argv[2];
 var level = require('./' + file);
+var showMap = require('./index');
 
 
 var rl = readline.createInterface({
@@ -64,21 +65,22 @@ var runGame = function (roomObj) {
   		if (newRoom === null) {
   			console.log('You can not travel that direction. Try again');
   			runGame(currentRoom);
-  		} 
+  		}
   		if (newRoom === undefined) {
   			console.log('Invalid command. Try again');
   			runGame(currentRoom);
-  		} 
+  		}
   		else {
 			console.log('You are now in room ' + newRoom);
   			whichRoom(newRoom);
-        	runGame(currentRoom);		
+        	runGame(currentRoom);
   		}
-  	
+
   	});
-  } 
+  }
   else {
     console.log('You have found the hidden treasure and beat this level!');
+    showMap.map;
     rl.close();
   }
 };
