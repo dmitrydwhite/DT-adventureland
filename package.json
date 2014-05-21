@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/dmitrydwhite/DT-adventureland/issues"
   },
-  "homepage": "https://github.com/dmitrydwhite/DT-adventureland"
+  "homepage": "https://github.com/dmitrydwhite/DT-adventureland",
+  "dependencies": {
+    "jsi-gamelib": "git+ssh://git@github.com:portlandcodeschool/jsi-gamelib.git"
+  }
 }
