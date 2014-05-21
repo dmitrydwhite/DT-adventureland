@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
-// var file = process.argv[2];
-var level = require('./level1.json');
 var readline = require('readline');
+var file = process.argv[2];
+var level = require('./' + file);
+
 
 var rl = readline.createInterface({
   input: process.stdin,
@@ -12,9 +13,6 @@ var rl = readline.createInterface({
 
 
 var currentRoom = {};
-var doorsArray = [];
-var doorDirections = [];
-var newRoom;
 var treasureRoom = {};
 
 // Find where they went
@@ -28,7 +26,8 @@ var whichRoom = function (roomName) {
 
 // Count the number of doors in the current room
 var countTheDoors = function (obj) {
-  doorsArray = [];
+  var doorsArray = [];
+  var doorDirections = [];
 	var d1 = ""; var d2 = "";var d3 = ""; var d4 = "";
 	if (obj.north) {
 		doorsArray.push(obj.north);
@@ -60,23 +59,18 @@ var describeDirection = function (obj) {
 
 };
 
-// console.log(currentRoom);
-// console.log('You\'re currently in ' + currentRoom.name);
-
-// console.log(doorsArray);
-
 var runGame = function (roomObj) {
   if (currentRoom !== treasureRoom) {
   	countTheDoors(roomObj);
   	rl.question("Which direction do you want to proceed? ", function(direction) {
+  		var newRoom;
   		console.log("You have traveled", direction);
-  			newRoom = roomObj[direction];
-  			console.log('You are now in room ' + newRoom);
-  			whichRoom(newRoom);
+  		newRoom = roomObj[direction];
+  		console.log('You are now in room ' + newRoom);
+  		whichRoom(newRoom);
         runGame(currentRoom);
   	});
-  }
-  else {
+  } else {
     console.log('You have found the hidden treasure and beat this level!');
     rl.close();
   }
@@ -99,9 +93,6 @@ level.rooms.forEach(function(obj) {
 // Run the game
 
 runGame (currentRoom);
-
-// console.log('You have found the treasure');
-// rl.close();
 
 
 
