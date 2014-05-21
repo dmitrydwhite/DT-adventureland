@@ -46,8 +46,8 @@ var countTheDoors = function (obj) {
 		doorDirections.push('west');
 		d4 = ', one to the west';
 	}
-	console.log('You are standing in a room. You notice there are ' + doorsArray.length + 
-		' doors in this weird little room' + 
+	console.log('You are standing in a room. You notice there are ' + doorsArray.length +
+		' doors in this weird little room' +
 		d1 + d2 + d3 + d4 + '.');
 };
 
@@ -63,12 +63,12 @@ countTheDoors(currentRoom);
 
 rl.question("Which direction do you want to proceed? ", function(direction) {
 	console.log("You have traveled", direction);
-		console.log(currentRoom.north);
+		newRoom = currentRoom[direction];
 		console.log('You are now in room ' + newRoom);
 
-	
+
   		rl.close();
-	
+
 });
 
 
