@@ -51,11 +51,6 @@ var countTheDoors = function (obj) {
 		d1 + d2 + d3 + d4 + '.');
 };
 
-var describeDirection = function (obj) {
-	countTheDoors(obj);
-
-};
-
 // console.log(currentRoom);
 // console.log('You\'re currently in ' + currentRoom.name);
 countTheDoors(currentRoom);
@@ -63,7 +58,7 @@ countTheDoors(currentRoom);
 
 rl.question("Which direction do you want to proceed? ", function(direction) {
 	console.log("You have traveled", direction);
-		console.log(currentRoom.north);
+		console.log(currentRoom.name);
 		console.log('You are now in room ' + newRoom);
 
 	
