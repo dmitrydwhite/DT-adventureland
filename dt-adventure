@@ -12,7 +12,6 @@ var rl = readline.createInterface({
 });
 
 
-var currentRoom = {};
 var treasureRoom = {};
 
 // Find where they went
@@ -82,13 +81,6 @@ var runGame = function (roomObj) {
   }
 };
 
-// Find the starting room
-level.rooms.forEach(function(obj) {
-  if (obj.entrance) {
-    currentRoom = obj;
-  }
-});
-
 // Find the treasure room
 level.rooms.forEach(function(obj) {
   if (obj.treasure) {
@@ -96,9 +88,17 @@ level.rooms.forEach(function(obj) {
   }
 });
 
+// Find the starting room
 // Run the game
+level.rooms.forEach(function(obj) {
+  if (obj.entrance) {
+      runGame(obj);
+  }
+});
 
-runGame (currentRoom);
+
+
+
 
 
 
