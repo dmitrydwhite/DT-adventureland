@@ -17,11 +17,13 @@ var treasureRoom = {};
 
 // Find where they went
 var whichRoom = function (roomName) {
+  var roomDescribe;
 	level.rooms.forEach(function(obj) {
 		if (obj.name === roomName) {
-			currentRoom = obj;
+			roomDescribe = obj;
 		}
 	});
+  return roomDescribe;
 };
 
 // Count the number of doors in the current room
@@ -49,13 +51,13 @@ var countTheDoors = function (obj) {
 		doorDirections.push('west');
 		d4 = ', one to the west';
 	}
-	console.log('You are standing in ' + currentRoom.name + '. You notice there are ' + doorsArray.length +
+	console.log('You are standing in ' + obj.name + '. You notice there are ' + doorsArray.length +
 		' doors in this weird little room' +
 		d1 + d2 + d3 + d4 + '.');
 };
 
 var runGame = function (roomObj) {
-  if (currentRoom !== treasureRoom) {
+  if (roomObj !== treasureRoom) {
   	countTheDoors(roomObj);
   	rl.question("Which direction do you want to proceed? ", function(direction) {
   		var newRoom;
@@ -63,16 +65,13 @@ var runGame = function (roomObj) {
   		newRoom = roomObj[direction];
   		if (newRoom === null) {
   			console.log('You can not travel that direction. Try again');
-  			runGame(currentRoom);
-  		} 
-  		if (newRoom === undefined) {
+  			runGame(roomObj);
+  		} else if (newRoom === undefined) {
   			console.log('Invalid command. Try again');
-  			runGame(currentRoom);
-  		} 
-  		else {
+  			runGame(roomObj);
+  		} else {
 			console.log('You are now in room ' + newRoom);
-  			whichRoom(newRoom);
-        	runGame(currentRoom);		
+        runGame(whichRoom(newRoom));		
   		}
   	
   	});
