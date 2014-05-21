@@ -54,11 +54,6 @@ var countTheDoors = function (obj) {
 		d1 + d2 + d3 + d4 + '.');
 };
 
-var describeDirection = function (obj) {
-	countTheDoors(obj);
-
-};
-
 var runGame = function (roomObj) {
   if (currentRoom !== treasureRoom) {
   	countTheDoors(roomObj);
@@ -66,11 +61,23 @@ var runGame = function (roomObj) {
   		var newRoom;
   		console.log("You have traveled", direction);
   		newRoom = roomObj[direction];
-  		console.log('You are now in room ' + newRoom);
-  		whichRoom(newRoom);
-        runGame(currentRoom);
+  		if (newRoom === null) {
+  			console.log('You can not travel that direction. Try again');
+  			runGame(currentRoom);
+  		} 
+  		if (newRoom === undefined) {
+  			console.log('Invalid command. Try again');
+  			runGame(currentRoom);
+  		} 
+  		else {
+			console.log('You are now in room ' + newRoom);
+  			whichRoom(newRoom);
+        	runGame(currentRoom);		
+  		}
+  	
   	});
-  } else {
+  } 
+  else {
     console.log('You have found the hidden treasure and beat this level!');
     rl.close();
   }
